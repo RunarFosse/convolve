@@ -7,15 +7,15 @@ Add convolve to `PATH` or run shell script directly. For simplicity's sake, `REA
 
 ## Usage
 
-```convolve [input_dimensions] [kernel_size] [-s stride] [-p padding]```
+```> convolve [input_dimensions] [kernel_size] [-s stride] [-p padding]```
 
 ------------
 
 ## Example
 
 ```
-convolve 24,24 5,3 -s 1,2 -p 4,3
-28,14
+> convolve 24,24 5,3 -s 1,2 -p 4,3
+  28,14
 ```
 
 ------------

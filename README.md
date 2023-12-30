@@ -29,7 +29,17 @@ Open `Environment variables` and add the path to `convolve.sh`.
 
 ------------
 
-## Example
+## Examples
+
+```
+> convolve 9,9 4,4
+  6,6
+```
+
+```
+> convolve 4,4 2,2 -p 1,2
+  5,7
+```
 
 ```
 > convolve 24,24 5,3 -s 1,2 -p 4,3

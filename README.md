@@ -10,7 +10,7 @@ Add convolve to `PATH` or run shell script directly. For simplicity's sake, `REA
 ### Linux or macOS
 
 ```
-> mv convolve.sh /usr/local/bin/convolve
+> cp convolve.sh /usr/local/bin/convolve
 ```
 
 or add `alias convolve=<path to convolve.sh>` in `~/.bashrc`.

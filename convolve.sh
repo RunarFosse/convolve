@@ -97,6 +97,10 @@ if [ $stride_m -le 0 ] || [ $stride_n -le 0 ]; then
     echo "Stride has to be strictly positive."
     exit 1
 fi
+if [ $padding_m -lt 0 ] || [ $padding_n -lt 0 ]; then
+    echo "Padding has to be non-negative."
+    exit 1
+fi
 
 # Perform main calculation
 output_m=$((($input_m - $kernel_m + 2*$padding_m + 1) / $stride_m))

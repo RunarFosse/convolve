@@ -61,4 +61,6 @@ Padding given is symmetric, meaning a padding of 2 adds a total of 4 extra rows/
 
 Arguments are given on the format m,n where m is the n.o. rows and n is the n.o. columns.
 
+Stride and padding can also be given as a single integer, meaning that horizontal and vertical stride/padding is equal.
+
 Padding input has to be non-positive, where as input, kernel and stride have to be strictly positive.

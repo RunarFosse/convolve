@@ -5,6 +5,24 @@ Add convolve to `PATH` or run shell script directly. For simplicity's sake, `REA
 
 ------------
 
+## Add to PATH
+
+### Linux or macOS
+
+```
+> mv convolve.sh /usr/local/bin/convolve
+```
+
+or add `alias convolve=<path to convolve.sh>` in `~/.bashrc`.
+
+Note that convolve requires execute permissions.
+
+### Windows
+
+Open `Environment variables` and add the path to `convolve.sh`.
+
+------------
+
 ## Usage
 
 ```> convolve [input_dimensions] [kernel_size] [-s stride] [-p padding]```

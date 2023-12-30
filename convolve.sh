@@ -83,6 +83,20 @@ else
     format_error
 fi
 
+# Ensure that all arguments but padding are strictly positive
+if [ $input_m -le 0 ] || [ $input_n -le 0 ]; then
+    echo "Input dimensions have to be strictly positive."
+    exit 1
+fi
+if [ $kernel_m -le 0 ] || [ $kernel_n -le 0 ]; then
+    echo "Kernel dimensions have to be strictly positive."
+    exit 1
+fi
+if [ $stride_m -le 0 ] || [ $stride_n -le 0 ]; then
+    echo "Stride has to be strictly positive."
+    exit 1
+fi
+
 # Perform main calculation
 output_m=$((($input_m - $kernel_m + 2*$padding_m + 1) / $stride_m))
 output_n=$((($input_n - $kernel_n + 2*$padding_n + 1) / $stride_n))

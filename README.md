@@ -24,3 +24,5 @@ Add convolve to `PATH` or run shell script directly. For simplicity's sake, `REA
 Padding given is symmetric, meaning a padding of 2 adds a total of 4 extra rows/columns.
 
 Arguments are given on the format m,n where m is the n.o. rows and n is the n.o. columns.
+
+Padding input has to be non-positive, where as input, kernel and stride have to be strictly positive.

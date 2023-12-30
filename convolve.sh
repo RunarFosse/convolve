@@ -10,6 +10,7 @@ help() {
     echo "Notes:"
     echo "Padding given is symmetric, meaning a padding of 2 adds a total of 4 extra rows/columns."
     echo "Arguments are given on the format m,n where m is the n.o. rows and n is the n.o. columns."
+    echo "Stride and padding can also be given as a single integer, meaning that horizontal and vertical stride/padding is equal."
     echo "Padding input has to be non-positive, where as input, kernel and stride have to be strictly positive."
 }  
 
@@ -30,30 +31,8 @@ fi
 # Specify variables
 input=$1; shift
 kernel=$1; shift
-stride="1,1"
-padding="0,0"
 
-# Parse optional arguments
-while getopts ":s:p:h" opt; do
-    case $opt in
-        s)
-            stride=$OPTARG
-            ;;
-        p)
-            padding=$OPTARG
-            ;;
-        h)
-            help
-            exit 0
-            ;;
-        ?)
-            help
-            exit 1
-            ;;
-    esac
-done
-
-# Verify and format of all passed arguments
+# Verify and format of input and kernel arguments
 IFS=","
 if [[ $input =~ ^[0-9]+,[0-9]+$ ]]; then
     read -a inputs <<< "$input"
@@ -69,20 +48,52 @@ if [[ $kernel =~ ^[0-9]+,[0-9]+$ ]]; then
 else
     format_error
 fi
-if [[ $stride =~ ^[0-9]+,[0-9]+$ ]]; then
-    read -a strides <<< "$stride"
-    stride_m=${strides[0]}
-    stride_n=${strides[1]}
-else
-    format_error
-fi
-if [[ $padding =~ ^[0-9]+,[0-9]+$ ]]; then
-    read -a paddings <<< "$padding"
-    padding_m=${paddings[0]}
-    padding_n=${paddings[1]}
-else
-    format_error
-fi
+
+# Default optional argument values
+stride_m=1
+stride_n=1
+padding_m=0
+padding_n=0
+
+# Verify and parse optional arguments
+while getopts ":s:p:h" opt; do
+    case $opt in
+        s)
+            stride=$OPTARG
+            if [[ $stride =~ ^[0-9]+,[0-9]+$ ]]; then
+                read -a strides <<< "$stride"
+                stride_m=${strides[0]}
+                stride_n=${strides[1]}
+            elif [[ $stride =~ ^[0-9]+$ ]]; then
+                stride_m=$stride
+                stride_n=$stride
+            else
+                format_error
+            fi
+            ;;
+        p)
+            padding=$OPTARG
+            if [[ $padding =~ ^[0-9]+,[0-9]+$ ]]; then
+                read -a paddings <<< "$padding"
+                padding_m=${paddings[0]}
+                padding_n=${paddings[1]}
+            elif [[ $padding =~ ^[0-9]+$ ]]; then
+                padding_m=$padding
+                padding_n=$padding
+            else
+                format_error
+            fi
+            ;;
+        h)
+            help
+            exit 0
+            ;;
+        ?)
+            help
+            exit 1
+            ;;
+    esac
+done
 
 # Ensure that all arguments but padding are strictly positive
 if [ $input_m -le 0 ] || [ $input_n -le 0 ]; then
@@ -114,5 +125,5 @@ fi
 output_m=$((($input_m - $kernel_m + 2*$padding_m) / $stride_m + 1))
 output_n=$((($input_n - $kernel_n + 2*$padding_n) / $stride_n + 1))
 
-# Output
+# Output result
 echo "$output_m,$output_n"

@@ -10,6 +10,7 @@ help() {
     echo "Notes:"
     echo "Padding given is symmetric, meaning a padding of 2 adds a total of 4 extra rows/columns."
     echo "Arguments are given on the format m,n where m is the n.o. rows and n is the n.o. columns."
+    echo "Padding input has to be non-positive, where as input, kernel and stride have to be strictly positive."
 }  
 
 # Format error

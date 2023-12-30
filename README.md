@@ -42,6 +42,11 @@ Open `Environment variables` and add the path to `convolve.sh`.
 ```
 
 ```
+> convolve 9,9 3,3 -s 3 -p 2
+  4,4
+```
+
+```
 > convolve 24,24 5,3 -s 1,2 -p 4,3
   28,14
 ```

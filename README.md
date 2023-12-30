@@ -42,7 +42,7 @@ Open `Environment variables` and add the path to `convolve.sh`.
 
 The script simply uses the formula for calculating the output shape of a 2D convolutional layer given the input shape, aswell as stride and padding parameters.
 
-$$ \text{Output shape} = \frac{\text{Input shape} - \text{Kernel size} + 2 \cdot \text{Padding} + 1}{\text{Stride}} $$
+$$ \text{Output shape} = \frac{\text{Input shape} - \text{Kernel size} + 2 \cdot \text{Padding}}{\text{Stride}} + 1 $$
 
 ------------
 

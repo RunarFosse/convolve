@@ -102,6 +102,14 @@ if [ $padding_m -lt 0 ] || [ $padding_n -lt 0 ]; then
     exit 1
 fi
 
+# Ensure that input + padding is bigger than or equal to kernel size. If not, convolution wouldn't work.
+padded_input_m=$(($input_m + 2*$padding_m))
+padded_input_n=$(($input_n + 2*$padding_n))
+if [ $padded_input_m -lt $kernel_m ] || [ $padded_input_n -lt $kernel_n ]; then
+    echo "Padded input dimensions have to be equal to or larger than kernel dimensions."
+    exit 1
+fi
+
 # Perform main calculation
 output_m=$((($input_m - $kernel_m + 2*$padding_m + 1) / $stride_m))
 output_n=$((($input_n - $kernel_n + 2*$padding_n + 1) / $stride_n))

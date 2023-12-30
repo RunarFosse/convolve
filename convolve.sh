@@ -111,8 +111,8 @@ if [ $padded_input_m -lt $kernel_m ] || [ $padded_input_n -lt $kernel_n ]; then
 fi
 
 # Perform main calculation
-output_m=$((($input_m - $kernel_m + 2*$padding_m) / $stride_m)) + 1
-output_n=$((($input_n - $kernel_n + 2*$padding_n) / $stride_n)) + 1
+output_m=$((($input_m - $kernel_m + 2*$padding_m) / $stride_m + 1))
+output_n=$((($input_n - $kernel_n + 2*$padding_n) / $stride_n + 1))
 
 # Output
 echo "$output_m,$output_n"

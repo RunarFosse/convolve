@@ -5,6 +5,14 @@ Add convolve to `PATH` or run shell script directly. For simplicity's sake, `REA
 
 ------------
 
+## How it works
+
+The script simply uses the formula for calculating the output shape of a 2D convolutional layer given the input shape, aswell as stride and padding parameters.
+
+$$ \text{Output shape} = \frac{\text{Input shape} - \text{Kernel size} + 2 \cdot \text{Padding}}{\text{Stride}} + 1 $$
+
+------------
+
 ## Add to PATH
 
 ### Linux or macOS
@@ -53,19 +61,12 @@ Open `Environment variables` and add the path to `convolve.sh`.
 
 ------------
 
-## How it works
-
-The script simply uses the formula for calculating the output shape of a 2D convolutional layer given the input shape, aswell as stride and padding parameters.
-
-$$ \text{Output shape} = \frac{\text{Input shape} - \text{Kernel size} + 2 \cdot \text{Padding}}{\text{Stride}} + 1 $$
-
-------------
-
 ## Notes
 Padding given is symmetric, meaning a padding of 2 adds a total of 4 extra rows/columns.
 
 Arguments are given on the format m,n where m is the n.o. rows and n is the n.o. columns.
 
-Stride and padding can also be given as a single integer, meaning that horizontal and vertical stride/padding is equal.
+Stride and padding can also be given as a single integer. Using this shorthand implies that horizontal and vertical stride/padding will be equal equal.
+I.e. `-s 4` is equivalent to `-s 4,4`.
 
-Padding input has to be non-positive, where as input, kernel and stride have to be strictly positive.
+Padding input has to be non-positive, where as input, kernel and stride have to be strictly positive. 
